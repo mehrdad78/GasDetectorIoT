@@ -1,0 +1,520 @@
+[
+    {
+        "id": "17ca16c937444065",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e5560901d63cddab",
+        "type": "debug",
+        "z": "17ca16c937444065",
+        "name": "Gas Values Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "46342a402996eab5",
+        "type": "ui_gauge",
+        "z": "17ca16c937444065",
+        "name": "Gas Level",
+        "group": "66ba27e48a2f90e7",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Gas Gauge",
+        "label": "Gas Value",
+        "format": "{{value}}",
+        "min": "80",
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "200",
+        "seg2": "299",
+        "diff": false,
+        "className": "",
+        "x": 520,
+        "y": 160,
+        "wires": [],
+        "info": "`"
+    },
+    {
+        "id": "1841cbd528cbf8ca",
+        "type": "ui_chart",
+        "z": "17ca16c937444065",
+        "name": "",
+        "group": "66ba27e48a2f90e7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Gas Chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 530,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de2250d86ac12225",
+        "type": "mqtt in",
+        "z": "17ca16c937444065",
+        "name": "",
+        "topic": "room1/mq2",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "92d6d05e756699af",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "e5560901d63cddab",
+                "46342a402996eab5",
+                "1841cbd528cbf8ca",
+                "68a14123a2f05a6b"
+            ]
+        ]
+    },
+    {
+        "id": "62443b6bc09b9af9",
+        "type": "mqtt out",
+        "z": "17ca16c937444065",
+        "name": "",
+        "topic": "room1/mq2/level",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "92d6d05e756699af",
+        "x": 790,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "e6d9545a579371db",
+        "type": "inject",
+        "z": "17ca16c937444065",
+        "name": "Level Set",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "300",
+        "payload": "300",
+        "payloadType": "str",
+        "x": 340,
+        "y": 400,
+        "wires": [
+            [
+                "62443b6bc09b9af9"
+            ]
+        ]
+    },
+    {
+        "id": "744752786421be73",
+        "type": "e-mail",
+        "z": "17ca16c937444065",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "authtype": "BASIC",
+        "saslformat": true,
+        "token": "oauth2Response.access_token",
+        "secure": true,
+        "tls": true,
+        "name": "mehrdadch148@gmail.com",
+        "dname": "mehrdadch148@gmail.com",
+        "x": 840,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "af5ce47bc9542c6a",
+        "type": "inject",
+        "z": "17ca16c937444065",
+        "name": "CREATE TABLE ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE REPORT( GAS FLOAT   NOT NULL, DATE STRING NOT NULL)",
+        "payload": "iso",
+        "payloadType": "date",
+        "x": 360,
+        "y": 300,
+        "wires": [
+            [
+                "4862d63ff4970f88"
+            ]
+        ]
+    },
+    {
+        "id": "2532072d2a401597",
+        "type": "comment",
+        "z": "17ca16c937444065",
+        "name": "Danger Level Setter",
+        "info": "",
+        "x": 490,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "dea9447252b39bb9",
+        "type": "debug",
+        "z": "17ca16c937444065",
+        "name": "DB Debugger",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4862d63ff4970f88",
+        "type": "sqlite",
+        "z": "17ca16c937444065",
+        "mydb": "66fe375b2f5b473d",
+        "sqlquery": "msg.topic",
+        "sql": "CREATE TABLE IF NOT EXISTS gas_readings (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    gas_value FLOAT NOT NULL,\n    date_time VARCHAR(25) NOT NULL\n);\nINSERT INTO gas_readings (gas_value, date_time)\nVALUES (24, msg.payload);",
+        "name": "MyDB",
+        "x": 710,
+        "y": 300,
+        "wires": [
+            [
+                "dea9447252b39bb9"
+            ]
+        ]
+    },
+    {
+        "id": "ffda457956d2be01",
+        "type": "inject",
+        "z": "17ca16c937444065",
+        "name": "INJECT TABLE",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "'SALAMA'",
+        "payloadType": "str",
+        "x": 140,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68a14123a2f05a6b",
+        "type": "function",
+        "z": "17ca16c937444065",
+        "name": "function 1",
+        "func": "var date = new Date().toISOString();  // Use ISO format for compatibility\n  // Ensure it's a valid float\n\nvar newMsg = {\n    topic: \"INSERT INTO REPORT VALUES (\" + msg.payload + \", '\" + date + \"')\"\n};\n\nreturn newMsg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "4862d63ff4970f88"
+            ]
+        ]
+    },
+    {
+        "id": "f1496e80330fcffe",
+        "type": "template",
+        "z": "17ca16c937444065",
+        "name": "EMAIL",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "DANGER LEVEL EXCEEDS: {{payload}} !",
+        "output": "str",
+        "x": 550,
+        "y": 40,
+        "wires": [
+            [
+                "744752786421be73",
+                "1c23fff59a9e119b"
+            ]
+        ]
+    },
+    {
+        "id": "259797e6f2bfd674",
+        "type": "mqtt in",
+        "z": "17ca16c937444065",
+        "name": "",
+        "topic": "room1/mq2/danger",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "92d6d05e756699af",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 40,
+        "wires": [
+            [
+                "f1496e80330fcffe"
+            ]
+        ]
+    },
+    {
+        "id": "28dca36da31bd52a",
+        "type": "inject",
+        "z": "17ca16c937444065",
+        "name": "SELECT TABLE",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM REPORT;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 360,
+        "y": 340,
+        "wires": [
+            [
+                "4862d63ff4970f88"
+            ]
+        ]
+    },
+    {
+        "id": "1c23fff59a9e119b",
+        "type": "ui_toast",
+        "z": "17ca16c937444065",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 810,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "799c129cc10e770e",
+        "type": "debug",
+        "z": "17ca16c937444065",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "61426c628a77fa0c",
+        "type": "mqtt in",
+        "z": "17ca16c937444065",
+        "name": "",
+        "topic": "test/topic",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "884fa91fec22d550",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 540,
+        "wires": [
+            [
+                "799c129cc10e770e"
+            ]
+        ]
+    },
+    {
+        "id": "66ba27e48a2f90e7",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "cb963cb98197e446",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "92d6d05e756699af",
+        "type": "mqtt-broker",
+        "name": "Hive",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "66fe375b2f5b473d",
+        "type": "sqlitedb",
+        "db": "C:\\NRDB\\report2",
+        "mode": "RWC"
+    },
+    {
+        "id": "884fa91fec22d550",
+        "type": "mqtt-broker",
+        "name": "MOSQUITTO",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "cb963cb98197e446",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

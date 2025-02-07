@@ -53,8 +53,6 @@ This repository contains the source code and setup guide for my final project in
 ## Future Improvements 🌍📈💡
 - Integrating a **mobile notification system** using **Telegram** or **WhatsApp**. 📲💬🚀
 
-## License 📜✅🔓
-This project is open-source and available under the **MIT License**.
 
 ## Author 👨‍💻🏫📜
 Mehrdad Chaharbaghi - Advanced IoT Course, **University of Kashan**
